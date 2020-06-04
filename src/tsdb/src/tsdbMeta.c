@@ -310,7 +310,7 @@ static STable *tsdbNewTable(STableCfg *pCfg, bool isSuper) {
     pTable->schema = tdDupSchema(pCfg->schema);
     pTable->tagSchema = tdDupSchema(pCfg->tagSchema);
 
-    tsize = strnlen(pCfg->sname, TSDB_TABLE_NAME_LEN);
+    tsize = strnlen(pCfg->sname, TSDB_TABLE_NAME_LEN - 1);
     pTable->name = calloc(1, tsize + VARSTR_HEADER_SIZE + 1);
     if (pTable->name == NULL) {
       terrno = TSDB_CODE_SERV_OUT_OF_MEMORY;
@@ -331,7 +331,7 @@ static STable *tsdbNewTable(STableCfg *pCfg, bool isSuper) {
     pTable->tableId.tid = pCfg->tableId.tid;
     pTable->lastKey = TSKEY_INITIAL_VAL;
 
-    tsize = strnlen(pCfg->name, TSDB_TABLE_NAME_LEN);
+    tsize = strnlen(pCfg->name, TSDB_TABLE_NAME_LEN - 1);
     pTable->name = calloc(1, tsize + VARSTR_HEADER_SIZE + 1);
     if (pTable->name == NULL) {
       terrno = TSDB_CODE_SERV_OUT_OF_MEMORY;

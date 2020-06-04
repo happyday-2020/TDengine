@@ -485,7 +485,7 @@ int mnodeGetConns(SShowObj *pShow, void *pConn) {
 int32_t mnodeGetConnsMeta(STableMetaMsg *pMeta, SShowObj *pShow, void *pConn) {
   int32_t cols = 0;
 
-  pShow->bytes[cols] = TSDB_TABLE_NAME_LEN;
+  pShow->bytes[cols] = TSDB_TABLE_NAME_LEN - 1;
   SSchema *pSchema = pMeta->schema;
 
   pSchema[cols].type = TSDB_DATA_TYPE_BINARY;
