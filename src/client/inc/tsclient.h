@@ -288,8 +288,8 @@ typedef struct STscObj {
   uint16_t           mnodePort;
   char               user[TSDB_USER_LEN];
   char               pass[TSDB_KEY_LEN];
-  char               acctId[TSDB_DB_NAME_LEN];
-  char               db[TSDB_TABLE_ID_LEN];
+  char               acctId[TSDB_ACCT_LEN];
+  char               db[TSDB_DB_NAME_LEN];
   char               sversion[TSDB_VERSION_LEN];
   char               writeAuth : 1;
   char               superAuth : 1;

@@ -279,18 +279,18 @@ static void tscProcessCurrentUser(SSqlObj *pSql) {
 }
 
 static void tscProcessCurrentDB(SSqlObj *pSql) {
-  char db[TSDB_DB_NAME_LEN + 1] = {0};
+  char db[TSDB_DB_NAME_LEN] = {0};
   extractDBName(pSql->pTscObj->db, db);
   
   // no use db is invoked before.
   if (strlen(db) == 0) {
-    setNull(db, TSDB_DATA_TYPE_BINARY, TSDB_DB_NAME_LEN);
+    setNull(db, TSDB_DATA_TYPE_BINARY, sizeof(db) - 1);
   }
   
   SQueryInfo* pQueryInfo = tscGetQueryInfoDetail(&pSql->cmd, 0);
   
   SSqlExpr* pExpr = taosArrayGetP(pQueryInfo->exprList, 0);
-  tscSetLocalQueryResult(pSql, db, pExpr->aliasName, TSDB_DB_NAME_LEN);
+  tscSetLocalQueryResult(pSql, db, pExpr->aliasName, sizeof(db) - 1);
 }
 
 static void tscProcessServerVer(SSqlObj *pSql) {
